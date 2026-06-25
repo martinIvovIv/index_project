@@ -1,0 +1,51 @@
+services:
+  app:
+    build: .
+    working_dir: /app
+    init: true
+    ports:
+      - "3003:3003"
+    env_file:
+      - .env
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: user123
+      DB_PASSWORD: password123
+      DB_NAME: db123
+      NODE_ENV: development
+    command: sh -c "npm run db:setup && npm run dev"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: user123
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user123 -d postgres"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  frontend:
+    build: ./index-frontend/
+    ports:
+      - "8080:80"
+    depends_on:
+      - app
+
+volumes:
+  postgres_data:

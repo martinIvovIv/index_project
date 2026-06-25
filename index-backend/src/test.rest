@@ -1,0 +1,46 @@
+@baseUrl = http://localhost:3003
+@projectId = replace-with-project-id
+@taskId = replace-with-task-id
+### Get health
+GET {{baseUrl}}/health
+###
+
+### Get all projects
+GET {{baseUrl}}/api/v1/projects
+###
+
+### Create a project
+POST {{baseUrl}}/api/v1/projects
+Content-Type: application/json
+
+{
+  "name": "test 3"
+}
+###
+
+### Delete a project
+DELETE {{baseUrl}}/api/v1/projects/{{projectId}}
+###
+
+
+### Create a task for project
+POST {{baseUrl}}/api/v1/projects/{{projectId}}/tasks
+Content-Type: application/json
+
+{
+  "title": "Prepare kickoff notes"
+}
+###
+
+### get all project tasks
+GET {{baseUrl}}/api/v1/projects/{{projectId}}/tasks
+###
+
+### Patch task status
+PATCH {{baseUrl}}/api/v1/projects/{{projectId}}/tasks/{{taskId}}/status
+Content-Type: application/json
+
+{
+  "status": "in_progress"
+}
+###

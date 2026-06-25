@@ -1,0 +1,42 @@
+{
+  "name": "index-backend",
+  "version": "1.0.0",
+  "description": "Projects and tasks API for the Index technical assessment.",
+  "main": "dist/server.js",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "dev": "tsx watch src/server.ts",
+    "db:setup": "tsx src/db/setup.ts",
+    "openapi": "tsx src/openapi/writeOpenApi.ts",
+    "build": "npm run openapi && tsc",
+    "start": "node dist/server.js",
+    "test": "jest --coverage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@asteasolutions/zod-to-openapi": "^7.3.4",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "pg": "^8.22.0",
+    "swagger-ui-express": "^5.0.1",
+    "tsx": "^4.22.4",
+    "zod": "^3.5.4"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^26.0.0",
+    "@types/pg": "^8.20.0",
+    "@types/supertest": "^7.2.0",
+    "@types/swagger-ui-express": "^4.1.8",
+    "jest": "^30.4.2",
+    "supertest": "^7.2.2",
+    "ts-jest": "^29.4.11",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
