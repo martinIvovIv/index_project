@@ -65,6 +65,16 @@ watch(openPanels, async (indices, prevIndices) => {
   }
 })
 
+watch(
+  tasksByProject,
+  (tasksMap) => {
+    for (const tasks of Object.values(tasksMap)) {
+      syncTaskDrafts(tasks)
+    }
+  },
+  { deep: true },
+)
+
 onMounted(() => projectStore.fetchProjects())
 </script>
 
@@ -179,7 +189,7 @@ onMounted(() => projectStore.fetchProjects())
 .sheet {
   background-color: var(--color-sheet-box);
   margin-inline: auto;
-  max-width: 680px;
+  min-width: 680px;
   width: 100%;
 }
 
@@ -212,6 +222,10 @@ onMounted(() => projectStore.fetchProjects())
     align-items: flex-start;
     justify-content: flex-start;
     padding-bottom: 1rem;
+  }
+
+  .sheet {
+    min-width: 400px;
   }
 }
 </style>

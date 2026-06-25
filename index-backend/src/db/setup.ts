@@ -4,7 +4,7 @@ import { config } from "../config/config";
 import { createPool, pool } from "./pool";
 
 async function ensureDatabaseExists() {
-  const adminPool = createPool();
+  const adminPool = createPool({ database: "postgres" });
 
   try {
     const result = await adminPool.query<{ exists: boolean }>(

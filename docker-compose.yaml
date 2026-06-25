@@ -1,12 +1,13 @@
 services:
   app:
-    build: .
+    build:
+      context: ./index-backend
     working_dir: /app
     init: true
     ports:
       - "3003:3003"
     env_file:
-      - .env
+      - index-backend/.env
     environment:
       DB_HOST: db
       DB_PORT: 5432
@@ -16,7 +17,7 @@ services:
       NODE_ENV: development
     command: sh -c "npm run db:setup && npm run dev"
     volumes:
-      - .:/app
+      - ./index-backend:/app
       - /app/node_modules
     depends_on:
       db:

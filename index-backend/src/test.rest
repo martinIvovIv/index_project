@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:3003
-@projectId = replace-with-project-id
+@projectId = ff5aa58e-4f90-46f3-ae6e-408150a7b0e7
 @taskId = replace-with-task-id
 ### Get health
 GET {{baseUrl}}/health
