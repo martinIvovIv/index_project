@@ -6,6 +6,10 @@ Easiest way is via docker-compose
 docker compose up --build
 ```
 
+Frontend URL: http://localhost:8080
+Backend: http://localhost:3003
+Backend docs: http://localhost:3003/docs/
+
 Different parts can be ran serarately but the DB might need to be either created by the user and the
 `.env` vars need to be updated.
 
